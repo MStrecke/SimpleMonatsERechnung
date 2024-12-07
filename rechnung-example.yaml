@@ -1,0 +1,29 @@
+kunde: translationcompany
+rechnungsnummer: 12345
+rechnungsdatum: 30.11.2024
+faelligkeitsdatum: 30.12.2024
+# die beiden Periode-Einträge müssen nur bei EU-Rechnungen gemacht werden
+periode_start: 01.11.2024
+periode_ende: 30.11.2024
+waehrung: EUR
+freitexte:
+  - text: "erlauben wir uns, Ihnen zu berechnen:"
+  - text: Zahlbar sofort, rein netto
+  - text: ein Text mit Code (nur wenige Codes vorhanden)
+    subjectCode: ACY
+positionen:
+  - produkt: übs_word_e-d
+    anzahl: 234
+    preis: 0.12
+    bestellnummer: BN-12345678
+    bestelldatum: 20.10.2024
+    lieferdatum: 25.10.2024
+    ansprechpartner: Frau Müller
+    beschreibung: Bedienungsanleitung XYZ GmbH
+  - produkt: mtpe
+    anzahl: 234
+    preis: 0.12
+    bestellnummer: BN-12345888
+    bestelldatum: 22.10.2024
+    lieferdatum: 27.10.2024
+    ansprechpartner: Herr Schmitz

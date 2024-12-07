@@ -1,0 +1,42 @@
+kennung: noname
+name: NoName GmbH
+adresse1: Kölner Ring 17
+adresse2:
+postleitzahl: 50677
+ort: Köln
+land: DE
+steuernummer:
+umsatzsteueridentifikationsnummer: DE12345678
+steuerfall: standard
+---
+kennung: heinemann
+name: Heinemann KG
+adresse1: Unbekannte Straße 13
+adresse2:
+postleitzahl: 45133
+ort: Essen
+land: DE
+steuernummer:
+umsatzsteueridentifikationsnummer:
+steuerfall: standard
+---
+kennung: translationcompany
+name: The Translation Company
+adresse1: 14, Rue Traduction
+adresse2:
+postleitzahl: 1234
+ort: Krxtown
+land: BE
+steuernummer:
+umsatzsteueridentifikationsnummer: BE1234567
+steuerfall: europa
+---
+kennung: etc
+name: English Translation Company
+adresse1: 14, Wide Road
+adresse2:
+postleitzahl: ABC-1234
+ort: Humington
+land: GB
+steuerfall: welt
+# Beim Steuerfall "welt" (Code "O") entfallen die Steuernummern

@@ -1,0 +1,16 @@
+# S = Standard (z.Z. 19%), Z = 0% (z. B. Kleinunternehmer)
+# K = innergemeinschaftlich, G = Waren, außerhalb der EU
+# O = Dienstleistungen, außerhalb EU
+kennung: standard
+rate: 19.0
+code: S
+---
+kennung: europa
+rate: 0
+code: K
+excemptionreason: Intra-Community supply
+---
+kennung: welt
+rate: 0
+code: O
+excemptionreason: Services outside scope of tax

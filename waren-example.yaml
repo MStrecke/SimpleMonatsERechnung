@@ -1,0 +1,34 @@
+# Einheiten aus Codeliste UN/ECE Recommendation N°20:
+#
+# C62 = Stück, H87 = piece, AE = each
+# LS = Lumb Sum = Pauschal
+# HUR = Stunden, DAY = Tage
+#
+kennung: lektorat
+bezeichnung: Lektorat
+einheit: HUR
+preis: 30.00
+---
+kennung: übs_word_e-d
+bezeichnung: Übersetzung, Englisch -> Deutsch (Wörter)
+einheit: EA
+preis: 0.10
+---
+kennung: übs_word_f-d
+bezeichnung: Übersetzung, Französisch -> Deutsch (Wörter)
+einheit: EA
+preis: 0.10
+---
+kennung: mtpe
+bezeichnung: MTPE (Wörter)
+einheit: EA
+preis: 0.06
+---
+kennung: pauschal
+bezeichnung: Pauschalpreis
+einheit: LS
+---
+kennung: mdgb
+bezeichnung: Mindestgebühr
+einheit: LS
+preis: 40.00

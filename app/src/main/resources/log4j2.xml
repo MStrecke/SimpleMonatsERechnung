@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="https://logging.apache.org/xml/ns"
+               xsi:schemaLocation="
+                       https://logging.apache.org/xml/ns
+                       https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+
+  <Appenders>
+    <Console name="CONSOLE">
+        <!--
+        %d{HH:mm:ss,SSS} => 13:59:23,208
+        %p => priority DEBUG/WARN/INFO/ERROR/FATAL
+        %L => line number
+        %m => message
+        %M => method name
+        %n => \n or \r\n
+        siehe https://logging.apache.org/log4j/1.x/apidocs/org/apache/log4j/PatternLayout.html
+        -->
+        <PatternLayout pattern="%d{HH:mm:ss,SSS} %p - %m%n"/>
+    </Console>
+
+    <File name="MAIN" fileName="log.json">
+      <!-- JSON braucht entsprechenden Import (runtimeOnly):
+           org.apache.logging.log4j:log4j-layout-template-json
+           und kann weiter konfiguriert werden: https://logging.apache.org/log4j/2.x/manual/json-template-layout.html
+      -->
+      <JsonTemplateLayout/>
+    </File>
+
+  </Appenders>
+
+  <Loggers>
+    <!-- Root-Logger -->
+    <Root level="DEBUG">    <!-- Stufe ab der der Logger das Ereignis annimmt -->
+        <AppenderRef ref="CONSOLE" level="WARN"/>
+        <AppenderRef ref="MAIN"/>
+    </Root>
+  </Loggers>
+
+</Configuration>
