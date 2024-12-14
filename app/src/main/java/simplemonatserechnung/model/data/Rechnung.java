@@ -2,6 +2,7 @@ package simplemonatserechnung.model.data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -26,7 +27,7 @@ public class Rechnung {
     }
 
     private String waehrung;
-    private List<Freitext> freitexte;
+    private List<Freitext> freitexte = new ArrayList<Freitext>();
     private List<RechnungsPosition> positionen;
 
     public String getKunde() {
