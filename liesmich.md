@@ -221,8 +221,10 @@ Neben dem Quellcode steht das Programm steht als sog. "Fat-Jar" oder "Uber-Jar" 
 Das Java-Programm wird (falls es nicht umbenannt wurde) gestartet mit:
 
 ```
-java -jar smer-X.X-all.jar name_der_pdf_datei.pdf
+java -jar smer-X.X-all.jar name_der_pdf_datei.pdf [name_der_rechnungsdaten.yaml]
 ```
+* `name_der_pdf_datei.pdf` ist der Name der PDF-Datei ohne XML
+* `name_der_rechnungsdaten.yaml` (optional) ist der Name der YAML-Datei mit den Rechnungsdaten. Wird er nicht angegeben, wird `rechnung.yaml` verwendet.
 
 Die Daten werden aus den Yaml-Dateien zusammengetragen, in ein XML verpackt und dieses in eine neue PDF-Datei geschrieben.
 

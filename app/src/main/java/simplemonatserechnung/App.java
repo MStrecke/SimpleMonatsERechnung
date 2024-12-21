@@ -68,6 +68,9 @@ public class App {
     static Firma firma = null;
     static Rechnung rechnung = null;
 
+    static Path pdfpath = null;
+    static String rgYamlFilename = null;
+
     public static void leseYamlDateien() {
         LOGGER.info("Lese Yaml-Dateien");
 
@@ -92,7 +95,7 @@ public class App {
         System.out.println("USt-ID: " + Utils.null2String(firma.getUmsatzsteueridentifikationsnummer()));
 
         // rechnung: global
-        rechnung = YamlLeser.leseSingle(Rechnung.class, RECHNUNG_YAML, 11);
+        rechnung = YamlLeser.leseSingle(Rechnung.class, rgYamlFilename, 11);
         System.out.println("RgNr: " + rechnung.getRechnungsnummer());
     }
 
@@ -373,29 +376,56 @@ public class App {
         System.out.printf("duePayable..: %9s%n", currencyFormat(mytc.getGrandTotal().subtract(mytc.getTotalPrepaid()), 2));
     }
 
+    static void kommandozeileAuswerten(String[] args) {
+        /*
+         * erster Parameter: Name des zu ergänzenden PDFs
+         * -> pdfpath (globale Variable)
+         * zweiter Parameter: (optional) Name der Rechnungs-YAML-Datei
+         * -> rgYamlFilename (default = RECHNUNG_YAML)
+         */
+        LOGGER.info("Auswertung Kommandozeile");
+
+        if (args.length == 0) {
+            System.err.println("Bitte PDF-Datei angeben");
+            System.exit(1);
+        };
+        if (args.length >= 1) {
+            String fname = args[0];
+            pdfpath = Paths.get(fname).normalize();
+            if (Files.notExists(pdfpath)) {
+                System.err.println("PDF-Datei '" + fname + "' existiert nicht");
+                System.exit(2);
+            }
+        }
+        if (args.length >= 2) {
+            rgYamlFilename = args[1];
+            Path rgYamlPath = Paths.get(rgYamlFilename).normalize();
+            if (Files.notExists(rgYamlPath)) {
+                System.err.println("Datei mit Rechnungsdaten '" + rgYamlFilename + "' existiert nicht");
+                System.exit(3);
+            }
+            LOGGER.info("Verwende angegebene Rg-YAML-Datei: " + rgYamlFilename);
+        };
+        if (args.length >= 3) {
+            System.err.println("Zu viele Parameter angegeben");
+            System.exit(3);
+        }
+
+        if (rgYamlFilename == null) {
+            rgYamlFilename = RECHNUNG_YAML;
+            Path rgYamlPath = Paths.get(RECHNUNG_YAML).normalize();
+            if (Files.notExists(rgYamlPath)) {
+                System.err.println(rgYamlFilename + " existiert nicht");
+                System.exit(4);
+            }
+            LOGGER.info("Verwende Standard-Rg-YAML-Datei: " + rgYamlFilename);
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Arbeitsverzeichnis = " + System.getProperty("user.dir"));
 
-        LOGGER.info("Prüfe Vorhandensein des PDFs");
-        Path pdfpath = null;
-        switch (args.length) {
-            case 0:
-                System.err.println("Bitte PDF-Datei angeben");
-                break;
-            case 1:
-                String fname = args[0];
-                pdfpath = Paths.get(fname).normalize();
-                if (Files.notExists(pdfpath)) {
-                    System.err.println(fname + " existiert nicht");
-                    pdfpath = null;
-                };
-                break;
-            default:
-                System.err.println("Bitte nur einen Dateinamen angeben.");
-        };
-        if (pdfpath == null) {
-            System.exit(1);
-        };
+        kommandozeileAuswerten(args);
 
         leseYamlDateien();
 
